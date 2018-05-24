@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 
 namespace RaiderIo.Data.Model {
     public class Profile {
+        public CharacterLookup character;
         public string name { get; set; }
         public string race { get; set; }
         public string @class { get; set; }

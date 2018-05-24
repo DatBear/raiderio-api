@@ -50,6 +50,11 @@ namespace RaiderIo.Services {
             var response = _client.Execute(request);
             var content = response.Content;
             var result = JsonConvert.DeserializeObject<Profile>(content);
+            result.character = new CharacterLookup {
+                name = name,
+                realm = realm,
+                region = region
+            };
             return result;
         }
 
@@ -58,7 +63,9 @@ namespace RaiderIo.Services {
             fields = fields.Intersect(_validProfileFields).ToArray();
             var profiles = new List<Profile>();
             foreach (var character in characters) {
-                profiles.Add(Get(character.region, character.realm, character.name, fields));
+                var profile = Get(character.region, character.realm, character.name, fields);
+                profile.character = character;
+                profiles.Add(profile);
             }
             return profiles;
         }

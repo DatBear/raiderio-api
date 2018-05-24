@@ -45,7 +45,7 @@ namespace RaiderIo.Controllers
                 return BadRequest();
 
             var profiles = _raiderIo.GetAll(characters.characters);
-            return Ok(new{ characters = profiles});
+            return Ok(new { profiles = profiles });
         }
 
     }
